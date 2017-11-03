@@ -2,7 +2,7 @@
     <b-container class="bv-example-row">
 			<b-row>
 				<b-col>
-                    <!-- will output post content base on this slug -->
+					<!-- will output post content base on this slug -->
 					<h1>{{ slug }}</h1>
 				</b-col>
 			</b-row>
@@ -14,16 +14,21 @@
 			</b-row>
     </b-container>
 </template>
-
+		
 <script>
-
+import { mapGetters } from 'vuex'
 
 export default {
     props: ['slug'],
-	data() {
-		return {
-			
-		}
-	}
+    computed: {
+        ...mapGetters({
+        recentPosts: 'recentPosts',
+        recentPostsLoaded: 'recentPostsLoaded'
+        })
+    },
+
+    mounted() {
+        this.$store.dispatch('getPost', { slug: this.slug })
+    }
 }
 </script>

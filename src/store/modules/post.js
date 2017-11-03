@@ -28,6 +28,14 @@ const actions = {
       commit(types.POSTS_LOADED, true)
       commit(types.INCREMENT_LOADING_PROGRESS)
     })
+  },
+  getPost ({ commit }, { slug }) {
+    api.getPosts(slug, posts => {
+      console.log('types: ', types)
+      commit(types.STORE_FETCHED_POST, { posts })
+      commit(types.POST_LOADED, true)
+      commit(types.INCREMENT_LOADING_PROGRESS)
+    })
   }
 }
 
