@@ -3,16 +3,26 @@ import Router from 'vue-router'
 
 // Components
 import Home from '../components/Home'
+import SinglePost from '../components/SinglePost'
 
 Vue.use(Router)
 
 const router = new Router({
   routes: [
     {
+      path: '*',
+      redirect: '/',
+    },
+    {
       path: '/',
       name: 'Home',
       component: Home,
       // props: { pageContentID: 383 }
+    },
+    {
+      path: '/posts/:slug',
+      component: SinglePost,
+      props: true
     }
   ],
   mode: 'history',
